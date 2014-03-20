@@ -6,7 +6,7 @@ if defined?(Unicorn)
   require 'unicorn/worker_killer'
 
   # Max memory size (RSS) per worker
-  use Unicorn::WorkerKiller::Oom, (200 * (1 << 20)), (250 * (1 << 20))
+  use Unicorn::WorkerKiller::Oom, (300 * (1 << 20)), (350 * (1 << 20))
 end
 
 require ::File.expand_path('../config/environment',  __FILE__)
