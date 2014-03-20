@@ -1,4 +1,15 @@
 GIT
+  remote: git://github.com/Datacom/grit.git
+  revision: d410f77aef2421b6a70792774211b03da0cbfd75
+  branch: datacom
+  specs:
+    gitlab-grit (2.6.4)
+      charlock_holmes (~> 0.6.9)
+      diff-lcs (~> 1.1)
+      mime-types (~> 1.15)
+      posix-spawn (~> 0.3.6)
+
+GIT
   remote: https://github.com/gitlabhq/markup.git
   revision: 61ade389c1e1c159359338f570d18464a44ddbc4
   ref: 61ade389c1e1c159359338f570d18464a44ddbc4
@@ -168,11 +179,6 @@ GEM
       stringex (~> 1.5.1)
     gitlab-grack (2.0.0.pre)
       rack (~> 1.5.1)
-    gitlab-grit (2.6.4)
-      charlock_holmes (~> 0.6.9)
-      diff-lcs (~> 1.1)
-      mime-types (~> 1.15)
-      posix-spawn (~> 0.3.6)
     gitlab-linguist (3.0.0)
       charlock_holmes (~> 0.6.6)
       escape_utils (~> 0.2.4)
@@ -583,6 +589,7 @@ DEPENDENCIES
   gitlab-flowdock-git-hook (~> 0.4.2)
   gitlab-gollum-lib (~> 1.1.0)
   gitlab-grack (~> 2.0.0.pre)
+  gitlab-grit!
   gitlab-linguist (~> 3.0.0)
   gitlab_git (~> 5.4.0)
   gitlab_meta (= 6.0)
