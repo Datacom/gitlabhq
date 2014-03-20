@@ -12,6 +12,11 @@
 - else
   = render "global_results"
 
-:javascript
-  $(".search_results .term").highlight("#{escape_javascript(params[:search])}");
+- tokens = @search_tokens
 
+:javascript
+  var tokens = #{tokens.to_json}
+  tokens.forEach(function(token){
+    if(token[0] == '-') return;
+    $(".search_results .term").highlight(token);
+  });

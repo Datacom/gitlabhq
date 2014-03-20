@@ -8,6 +8,11 @@ class SearchController < ApplicationController
     if @project
       return access_denied! unless can?(current_user, :download_code, @project)
       @search_results = Search::ProjectService.new(@project, current_user, params).execute
+
+      # Split the search text into tokens for highlighting
+      searchtext = params[:search]
+      searchtext = searchtext.gsub('"', '') if searchtext.count('"') % 2 == 1
+      @search_tokens = Shellwords.split(searchtext)
     else
       @search_results = Search::GlobalService.new(current_user, params).execute
     end
