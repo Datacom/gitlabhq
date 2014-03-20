@@ -8,11 +8,10 @@ module Search
 
     def execute
       query = params[:search]
-      query = Shellwords.shellescape(query) if query.present?
       return result unless query.present?
 
       if params[:search_code].present?
-        blobs = project.repository.search_files(query, params[:repository_ref]) unless project.empty_repo?
+        blobs = project.repository.search_files_advanced(query, params[:repository_ref]) unless project.empty_repo?
         blobs = Kaminari.paginate_array(blobs).page(params[:page]).per(20)
         result[:blobs] = blobs
         result[:total_results] = blobs.total_count
