@@ -36,3 +36,6 @@ doc/code/*
 *.log
 public/uploads.*
 public/assets/
+*.iml
+out
+
