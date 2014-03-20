@@ -1,4 +1,16 @@
 GIT
+  remote: git://github.com/Datacom/gitlab_git.git
+  revision: 1fc8a4def244a522b3c8b8944f17a3575ad7defe
+  branch: datacom
+  specs:
+    gitlab_git (5.4.0)
+      activesupport (~> 4.0.0)
+      charlock_holmes (~> 0.6.9)
+      gitlab-grit (~> 2.6.1)
+      gitlab-linguist (~> 3.0.0)
+      rugged (~> 0.19.0)
+
+GIT
   remote: git://github.com/Datacom/grit.git
   revision: d410f77aef2421b6a70792774211b03da0cbfd75
   branch: datacom
@@ -183,12 +195,6 @@ GEM
       charlock_holmes (~> 0.6.6)
       escape_utils (~> 0.2.4)
       mime-types (~> 1.19)
-    gitlab_git (5.4.0)
-      activesupport (~> 4.0.0)
-      charlock_holmes (~> 0.6.9)
-      gitlab-grit (~> 2.6.1)
-      gitlab-linguist (~> 3.0.0)
-      rugged (~> 0.19.0)
     gitlab_meta (6.0)
     gitlab_omniauth-ldap (1.0.4)
       net-ldap (~> 0.3.1)
@@ -591,7 +597,7 @@ DEPENDENCIES
   gitlab-grack (~> 2.0.0.pre)
   gitlab-grit!
   gitlab-linguist (~> 3.0.0)
-  gitlab_git (~> 5.4.0)
+  gitlab_git!
   gitlab_meta (= 6.0)
   gitlab_omniauth-ldap (= 1.0.4)
   gon (~> 5.0.0)
