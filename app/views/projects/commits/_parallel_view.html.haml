@@ -14,62 +14,129 @@
 - offset2 = 0
 
 %div.text-file-parallel
-  %table{ style: "table-layout: fixed;" }
-    - max_length.times do |line_index|
-      - line_index1 = line_index - offset1
-      - line_index2 = line_index - offset2
-      - deleted_line = deleted_lines[line_index1 + 1]
-      - added_line = added_lines[line_index2 + 1]
-      - old_line = old_file.lines[line_index1] if old_file
-      - new_line = file.lines[line_index2]
+  %div.diff_side.diff_side_left
+    %table
+      - max_length.times do |line_index|
+        - offset1 = 0
+        - offset2 = 0
+        - line_index1 = line_index - offset1
+        - line_index2 = line_index - offset2
+        - deleted_line = deleted_lines[line_index1 + 1]
+        - added_line = added_lines[line_index2 + 1]
+        - old_line = old_file.lines[line_index1] if old_file
+        - new_line = file.lines[line_index2]
 
-      - if deleted_line && added_line
-      - elsif deleted_line
-        - new_line = nil
-        - offset2 += 1
-      - elsif added_line
-        - old_line = nil
-        - offset1 += 1
-
-      %tr.line_holder.parallel
-        - if line_index == 0 && diff.new_file
-          %td.line_content.parallel= "File was created"
-          %td.old_line= ""
+        - if deleted_line && added_line
         - elsif deleted_line
-          %td.line_content{class: "parallel noteable_line old #{deleted_line[:line_code]}", "line_code" => deleted_line[:line_code] }= old_line
-          %td.old_line.old
-            = line_index1 + 1
-            - if @comments_allowed
-              =# render "projects/notes/diff_note_link", line_code: deleted_line[:line_code]
-        - elsif old_line
-          %td.line_content.parallel= old_line
-          %td.old_line= line_index1 + 1
-        - else
-          %td.line_content.parallel= ""
-          %td.old_line= ""
-
-        %td.diff_line= ""
-
-        - if diff.deleted_file && line_index == 0
-          %td.new_line= ""
-          %td.line_content.parallel= "File was deleted"
+          - new_line = nil
+          - offset2 += 1
         - elsif added_line
-          %td.new_line.new
-            = line_index2 + 1
-            - if @comments_allowed
-              =# render "projects/notes/diff_note_link", line_code: added_line[:line_code]
-          %td.line_content{class: "parallel noteable_line new #{added_line[:line_code]}", "line_code" => added_line[:line_code] }= new_line
-        - elsif new_line
-          %td.new_line= line_index2 + 1
-          %td.line_content.parallel= new_line
-        - else
-          %td.new_line= ""
-          %td.line_content.parallel= ""
+          - old_line = nil
+          - offset1 += 1
 
-      - if @reply_allowed
-        - comments1 = []
-        - comments2 = []
-        - comments1 = @line_notes.select { |n| n.line_code == deleted_line[:line_code] }.sort_by(&:created_at) if deleted_line
-        - comments2 = @line_notes.select { |n| n.line_code == added_line[:line_code] }.sort_by(&:created_at) if added_line
-        - unless comments1.empty? && comments2.empty?
-          = render "projects/notes/diff_notes_with_reply_parallel", notes1: comments1, notes2: comments2, line1: deleted_line, line2: added_line
+        %tr.line_holder.parallel
+          - if line_index == 0 && diff.new_file
+            %td.line_content.parallel= "File was created"
+          - elsif deleted_line
+            %td.line_content{class: "parallel noteable_line old #{deleted_line[:line_code]}", "line_code" => deleted_line[:line_code] }= old_line
+          - elsif old_line
+            %td.line_content.parallel= old_line
+          - else
+            %td.line_content.parallel= ""
+
+  %div.diff_middle
+    %table
+      - max_length.times do |line_index|
+        - offset1 = 0
+        - offset2 = 0
+        - line_index1 = line_index - offset1
+        - line_index2 = line_index - offset2
+        - deleted_line = deleted_lines[line_index1 + 1]
+        - added_line = added_lines[line_index2 + 1]
+        - old_line = old_file.lines[line_index1] if old_file
+        - new_line = file.lines[line_index2]
+
+        - if deleted_line && added_line
+        - elsif deleted_line
+          - new_line = nil
+          - offset2 += 1
+        - elsif added_line
+          - old_line = nil
+          - offset1 += 1
+
+        %tr
+
+          - if line_index == 0 && diff.new_file
+            %td.old_line= ""
+          - elsif deleted_line
+            %td.old_line.old
+              = line_index1 + 1
+              - if @comments_allowed
+                =# render "projects/notes/diff_note_link", line_code: deleted_line[:line_code]
+          - elsif old_line
+            %td.old_line= line_index1 + 1
+          - else
+            %td.old_line= ""
+
+          %td.diff_line=""
+
+          - if diff.deleted_file && line_index == 0
+            %td.new_line= ""
+          - elsif added_line
+            %td.new_line.new
+              = line_index2 + 1
+              - if @comments_allowed
+                =# render "projects/notes/diff_note_link", line_code: added_line[:line_code]
+          - elsif new_line
+            %td.new_line= line_index2 + 1
+          - else
+            %td.new_line= ""
+
+  %div.diff_side.diff_side_right
+    %table
+      - max_length.times do |line_index|
+        - offset1 = 0
+        - offset2 = 0
+        - line_index1 = line_index - offset1
+        - line_index2 = line_index - offset2
+        - deleted_line = deleted_lines[line_index1 + 1]
+        - added_line = added_lines[line_index2 + 1]
+        - old_line = old_file.lines[line_index1] if old_file
+        - new_line = file.lines[line_index2]
+
+        - if deleted_line && added_line
+        - elsif deleted_line
+          - new_line = nil
+          - offset2 += 1
+        - elsif added_line
+          - old_line = nil
+          - offset1 += 1
+
+        %tr.line_holder.parallel
+          - if diff.deleted_file && line_index == 0
+            %td.line_content.parallel= "File was deleted"
+          - elsif added_line
+            %td.line_content{class: "parallel noteable_line new #{added_line[:line_code]}", "line_code" => added_line[:line_code] }= new_line
+          - elsif new_line
+            %td.line_content.parallel= new_line
+          - else
+            %td.line_content.parallel= ""
+
+-#- if @reply_allowed
+-#            - comments1 = []
+-#            - comments2 = []
+-#            - comments1 = @line_notes.select { |n| n.line_code == deleted_line[:line_code] }.sort_by(&:created_at) if deleted_line
+-#            - comments2 = @line_notes.select { |n| n.line_code == added_line[:line_code] }.sort_by(&:created_at) if added_line
+-#            - unless comments1.empty? && comments2.empty?
+-#              = render "projects/notes/diff_notes_with_reply_parallel", notes1: comments1, notes2: comments2, line1: deleted_line, line2: added_line
+
+:javascript
+  $('.diff_side_right').on('scroll', function(){
+    $('.diff_side_left, .diff_middle').scrollTop($(this).scrollTop());
+    $('.diff_side_left').scrollLeft($(this).scrollLeft());
+  });
+
+  $('.diff_side_left').on('scroll', function(){
+    $('.diff_side_right, .diff_middle').scrollTop($(this).scrollTop()); // might never be relevant
+    $('.diff_side_right').scrollLeft($(this).scrollLeft());
+  });
