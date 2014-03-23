@@ -16,9 +16,9 @@
 %div.text-file-parallel
   %div.diff_side.diff_side_left
     %table
+      - offset1 = 0
+      - offset2 = 0
       - max_length.times do |line_index|
-        - offset1 = 0
-        - offset2 = 0
         - line_index1 = line_index - offset1
         - line_index2 = line_index - offset2
         - deleted_line = deleted_lines[line_index1 + 1]
@@ -46,9 +46,9 @@
 
   %div.diff_middle
     %table
+      - offset1 = 0
+      - offset2 = 0
       - max_length.times do |line_index|
-        - offset1 = 0
-        - offset2 = 0
         - line_index1 = line_index - offset1
         - line_index2 = line_index - offset2
         - deleted_line = deleted_lines[line_index1 + 1]
@@ -94,9 +94,9 @@
 
   %div.diff_side.diff_side_right
     %table
+      - offset1 = 0
+      - offset2 = 0
       - max_length.times do |line_index|
-        - offset1 = 0
-        - offset2 = 0
         - line_index1 = line_index - offset1
         - line_index2 = line_index - offset2
         - deleted_line = deleted_lines[line_index1 + 1]
