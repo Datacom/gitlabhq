@@ -59,11 +59,11 @@
 
 :javascript
   $('.diff_side_right').on('scroll', function(){
-    $('.diff_side_left, .diff_middle').scrollTop($(this).scrollTop());
-    $('.diff_side_left').scrollLeft($(this).scrollLeft());
+    $(this).siblings('.diff_side_left, .diff_middle').scrollTop($(this).scrollTop());
+    $(this).siblings('.diff_side_left').scrollLeft($(this).scrollLeft());
   });
 
   $('.diff_side_left').on('scroll', function(){
-    $('.diff_side_right, .diff_middle').scrollTop($(this).scrollTop()); // might never be relevant
-    $('.diff_side_right').scrollLeft($(this).scrollLeft());
+    $(this).siblings('.diff_side_right, .diff_middle').scrollTop($(this).scrollTop()); // might never be relevant
+    $(this).siblings('.diff_side_right').scrollLeft($(this).scrollLeft());
   });
