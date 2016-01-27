@@ -15,3 +15,9 @@ header, nav, nav.main-nav, nav.navbar-collapse, nav.navbar-collapse.collapse {di
 .sidebar-wrapper { display: none; }
 .nav { display: none; }
 .btn { display: none; }
+
+/* these two styles comprise a hack to work around https://code.google.com/p/chromium/issues/detail?id=567317 */
+.page-with-sidebar {
+  margin-left: -230px!important;
+  padding-left: 230px!important;
+}
